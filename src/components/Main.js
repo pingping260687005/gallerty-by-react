@@ -32,4 +32,6 @@ class AppComponent extends React.Component {
 
 AppComponent.defaultProps = {
 };
+
+// try to sync with workspace in local machine
 export default AppComponent;
