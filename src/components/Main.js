@@ -34,4 +34,5 @@ AppComponent.defaultProps = {
 };
 
 // try to sync with workspace in local machine
+// get it from local machine
 export default AppComponent;
