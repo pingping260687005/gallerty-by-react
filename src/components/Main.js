@@ -1,5 +1,5 @@
 require('normalize.css/normalize.css');
-require('styles/App.scss');
+require('styles/App.less');
 
 import React from 'react';
 
@@ -32,9 +32,9 @@ class AppComponent extends React.Component {
 
 AppComponent.defaultProps = {
 };
-ReactDOM.render(
+/*ReactDOM.render(
   <AppComponent />,
   document.getElementById('app')
 );
-
+*/
 export default AppComponent;
