@@ -19,11 +19,18 @@ imageDatas = (function(imageArray){
 })(imageDatas);
 
 var ImgFigure = React.createClass({
+  getInitialState:function(){
+    return {liked:false};
+  },
+  handleClick:function(event){
+    this.setState({liked: !this.state.liked});
+
+  },
   render:function(){
     let data=this.props.data;
     return (
       <figure className="img-figure" ref="imgFigure">
-        <img src={data.imageURL} alt={data.title}/>
+        <img src={data.imageURL} alt={data.title} onClick={this.handleClick}/>
         <figcaption className="img-figcaption">
           <h2>{data.title} </h2>
         </figcaption>
@@ -44,6 +51,15 @@ class AppComponent extends React.Component {
         topY:[0,0]
       }  
     };
+
+  // get initial state
+  getInitialState () {
+    return {
+      opacity: 1.0
+    };
+  }
+
+
 
   // 组件加载之后为每张图设置位置
   componentDidMount(){
@@ -110,3 +126,6 @@ AppComponent.defaultProps = {
 // try to sync with workspace in local machine
 // get it from local machine-no push--must push
 export default AppComponent;
+
+
+// Getting start doc, refer to: http://www.ruanyifeng.com/blog/2015/03/react.html
