@@ -14,7 +14,7 @@ module.exports = {
   port: defaultSettings.port,
   debug: true,
   devtool: 'eval',
-  output: {
+  output: {//出口
     path: path.join(__dirname, '/../dist/assets'),
     filename: 'app.js',
     publicPath: defaultSettings.publicPath
@@ -22,13 +22,13 @@ module.exports = {
   devServer: {
     contentBase: './src/',
     historyApiFallback: true,
-    hot: true,
+    hot: true,//热更新
     port: defaultSettings.port,
     publicPath: defaultSettings.publicPath,
     noInfo: false
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx'],// require后面的路径可以不加.js,.jsx
     alias: {
       actions: `${defaultSettings.srcPath}/actions/`,
       components: `${defaultSettings.srcPath}/components/`,

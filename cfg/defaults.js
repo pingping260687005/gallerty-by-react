@@ -15,7 +15,7 @@ const dfltPort = 8000;
  * @return {Object}
  */
 function getDefaultModules() {
-  return {
+  return {//webpack的loader 功能是可以在js里使用require异步加载js
     preLoaders: [
       {
         test: /\.(js|jsx)$/,
