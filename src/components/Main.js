@@ -55,10 +55,40 @@ class AppComponent extends React.Component {
   // get initial state
   getInitialState () {
     return {
-      opacity: 1.0
+      imgsArrangeArr:[
+          /*{left:0,top:0}  */
+      ]
     };
   }
 
+/***
+ * 重新排布图片
+ * @param centerIndex: 中心图片的index
+ */
+rearrange (centerIndex) { 
+    let imgsArrangeArr = this.state.imgsArrangeArr,
+        Constant = this.Constant,
+        centerPos =  this.Constant.centerPos,
+        hPosRange =  this.Constant.hPosRange,
+        vPosRange =  this.Constant.vPosRange,
+        hPosRangeleftX =  hPosRange.leftX,
+        hPosRangerightX =  hPosRange.rightX,
+        hPosRangeY =  hPosRange.y,
+        vPosRangeX =  vPosRange.x,
+        vPosRangeTopY =  vPosRange.topY,
+        imgsArrangeTopArr = [];
+        topImgNum = Math.floor(Math.random()*2),
+        topImgSpliceIndex = 0, // 位于上面的图片是从数组的哪个位置拿出来的
+        imgsArrangeCenterArr =  imgsArrangeArr.splic(centerIndex,1)
+        
+        // 首先居中centerindex 的图片
+        imgsArrangeCenterArr[0] = centerPos;
+        // 取出要布局的上册的图片状态信息
+        topImgSpliceIndex = Math.floor(Math.random()* (imgsArrangeArr.length - topImgNum));
+        imgsArrangeTopArr.splice(topImgSpliceIndex,topImgNum);
+
+        //7.13""
+}
 
 
   // 组件加载之后为每张图设置位置
@@ -88,25 +118,35 @@ class AppComponent extends React.Component {
     // 右上角的位置
     this.Constant.hPosRange.rightX[0] = halfStageW + halfPicW;
     this.Constant.hPosRange.rightX[1] = stageWidth - halfPicW;
-    //最上面的y的位置
+    // 最上面的y的位置
     this.Constant.hPosRange.y[0] = - halfPicH;
-    //最下面的y的位置
+    // 最下面的y的位置
     this.Constant.hPosRange.y[1] = halfStageH - halfPicH;
 
-    // 计算上测的位置点
+    // 计算上测的位置点 // 有点疑问的。不知道他指的是哪个区间
     this.Constant.vPosRange.topY[0] = - halfPicH;
     this.Constant.vPosRange.topY[1] = halfStageH - picHeight;
-    this.Constant.vPosRange.x[0] = halfStageW - halfPicW;
+    this.Constant.vPosRange.x[0] = halfStageW - picWidth;
     this.Constant.vPosRange.x[1] = halfStageW /*+ halfPicW*/;
-  };
+
+    // 随机分布
+    this.rearrange(0);
+};
   render() {
     
     var imageFigures=[],
         controllerUnits=[];
+        //将所有的图片定位的左上角
+        if(!this.state.imgsArrangeArr[index]){
+          this.state.imgsArrangeArr[index] = {
+              left:0,
+              top:0
+          }
+        }
 
         imageDatas.forEach(function(value) {
           imageFigures.push(<ImgFigure data = {value}/>);
-        });
+        }.bind(this));
     return (
       <section className="stage" ref="stage">
         <section className="img-sec"> 
